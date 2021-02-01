@@ -60,17 +60,18 @@ namespace Coravel.Scheduling.Schedule.Event
         public bool IsDue(DateTime utcNow)
         {
             var zonedNow = this._zonedTime.Convert(utcNow);
+            return this._expression.IsDue(zonedNow);
 
-            if (this._isScheduledPerSecond)
-            {
-                var isSecondDue = this.IsSecondsDue(zonedNow);
-                var isWeekDayDue = this._expression.IsWeekDayDue(zonedNow);
-                return isSecondDue && isWeekDayDue;
-            }
-            else
-            {
-                return this._expression.IsDue(zonedNow);
-            }
+            //if (this._isScheduledPerSecond)
+            //{
+            //    var isSecondDue = this.IsSecondsDue(zonedNow);
+            //    var isWeekDayDue = this._expression.IsWeekDayDue(zonedNow);
+            //    return isSecondDue && isWeekDayDue;
+            //}
+            //else
+            //{
+            //    return this._expression.IsDue(zonedNow);
+            //}
         }
 
         private bool IsSecondsDue(DateTime utcNow)
@@ -133,37 +134,37 @@ namespace Coravel.Scheduling.Schedule.Event
 
         public IScheduledEventConfiguration Daily()
         {
-            this._expression = new CronExpression("00 00 * * *");
+            this._expression = new CronExpression("00 00 00 * * *");
             return this;
         }
 
         public IScheduledEventConfiguration DailyAtHour(int hour)
         {
-            this._expression = new CronExpression($"00 {hour} * * *");
+            this._expression = new CronExpression($"00 00 {hour} * * *");
             return this;
         }
 
         public IScheduledEventConfiguration DailyAt(int hour, int minute)
         {
-            this._expression = new CronExpression($"{minute} {hour} * * *");
+            this._expression = new CronExpression($"00 {minute} {hour} * * *");
             return this;
         }
 
         public IScheduledEventConfiguration Hourly()
         {
-            this._expression = new CronExpression($"00 * * * *");
+            this._expression = new CronExpression($"00 00 * * * *");
             return this;
         }
 
         public IScheduledEventConfiguration HourlyAt(int minute)
         {
-            this._expression = new CronExpression($"{minute} * * * *");
+            this._expression = new CronExpression($"00 {minute} * * * *");
             return this;
         }
 
         public IScheduledEventConfiguration EveryMinute()
         {
-            this._expression = new CronExpression($"* * * * *");
+            this._expression = new CronExpression($"00 * * * * *");
             return this;
         }
 
