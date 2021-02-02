@@ -291,9 +291,7 @@ namespace Coravel.Scheduling.Schedule.Event
 
         public IScheduledEventConfiguration EverySecond()
         {
-            this._secondsInterval = 1;
-            this._isScheduledPerSecond = true;
-            this._expression = new CronExpression("* * * * *");
+            this._expression = new CronExpression("*/1 * * * * *");
             return this;
         }
 
@@ -305,24 +303,18 @@ namespace Coravel.Scheduling.Schedule.Event
 
         public IScheduledEventConfiguration EveryTenSeconds()
         {
-            this._secondsInterval = 10;
-            this._isScheduledPerSecond = true;
             this._expression = new CronExpression("*/10 * * * * *");
             return this;
         }
 
         public IScheduledEventConfiguration EveryFifteenSeconds()
         {
-            this._secondsInterval = 15;
-            this._isScheduledPerSecond = true;
             this._expression = new CronExpression("*/15 * * * * *");
             return this;
         }
 
         public IScheduledEventConfiguration EveryThirtySeconds()
         {
-            this._secondsInterval = 30;
-            this._isScheduledPerSecond = true;
             this._expression = new CronExpression("*/30 * * * * *");
             return this;
         }

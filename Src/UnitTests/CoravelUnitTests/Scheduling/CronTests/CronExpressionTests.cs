@@ -137,6 +137,7 @@ namespace UnitTests.Scheduling.CronTests
         [InlineData("* * * * * 2-4", "8/16/2018 10:59:00 pm", true)]
         [InlineData("* * * * * 2-4", "8/17/2018 10:59:00 pm", false)]
         // Mixed
+        [InlineData("2 00 01 * * *", "8/14/2018 1:00:02 am", true)]
         [InlineData("* 00 01 * * *", "8/14/2018 1:00:00 am", true)]
         [InlineData("* 00 01 * * *", "8/14/2018 1:01:00 am", false)]
         [InlineData("* 05 01 * * *", "8/14/2018 1:05:00 am", true)]

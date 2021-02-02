@@ -17,6 +17,15 @@ namespace UnitTests.Scheduling.IntervalTests
         [InlineData("* * * * * *", "1/1/2018 12:01:00 am", true)]
         [InlineData("* * * * * *", "1/1/2018 1:59:00 am", true)]
         [InlineData("* * * * * *", "1/1/2018 6:22:00 pm", true)]
+
+        [InlineData("1 05 * * * *", "1/1/2018 6:05:01 pm", true)]
+        [InlineData("1-5 05 * * * *", "1/1/2018 6:05:03 pm", true)]
+        [InlineData("1-5 05 * * * *", "1/1/2018 6:05:05 pm", true)]
+        [InlineData("1-5 05 * * * *", "1/1/2018 6:05:06 pm", false)]
+        [InlineData("*/5 06 * * * *", "1/1/2018 6:06:00 pm", true)]
+        [InlineData("*/5 06 * * * *", "1/1/2018 6:06:05 pm", true)]
+        [InlineData("*/5 06 * * * *", "1/1/2018 6:06:25 pm", true)]
+
         // Minutes
         [InlineData("0 05 * * * *", "1/1/2018 6:04:00 pm", false)]
         [InlineData("0 05 * * * *", "1/1/2018 6:05:00 pm", true)]
