@@ -164,38 +164,38 @@ namespace Coravel.Scheduling.Schedule.Event
 
         public IScheduledEventConfiguration EveryMinute()
         {
-            this._expression = new CronExpression($"00 * * * * *");
+            this._expression = new CronExpression($"00 */1 * * * *");
             return this;
         }
 
         public IScheduledEventConfiguration EveryFiveMinutes()
         {
-            this._expression = new CronExpression($"*/5 * * * *");
+            this._expression = new CronExpression($"0 */5 * * * *");
             return this;
         }
 
         public IScheduledEventConfiguration EveryTenMinutes()
         {
             // todo fix "*/10" in cron part
-            this._expression = new CronExpression($"*/10 * * * *");
+            this._expression = new CronExpression($"0 */10 * * * *");
             return this;
         }
 
         public IScheduledEventConfiguration EveryFifteenMinutes()
         {
-            this._expression = new CronExpression($"*/15 * * * *");
+            this._expression = new CronExpression($"0 */15 * * * *");
             return this;
         }
 
         public IScheduledEventConfiguration EveryThirtyMinutes()
         {
-            this._expression = new CronExpression($"*/30 * * * *");
+            this._expression = new CronExpression($"0 */30 * * * *");
             return this;
         }
 
         public IScheduledEventConfiguration Weekly()
         {
-            this._expression = new CronExpression($"00 00 * * 1");
+            this._expression = new CronExpression($"0 00 00 * * 1");
             return this;
         }
 
@@ -299,9 +299,7 @@ namespace Coravel.Scheduling.Schedule.Event
 
         public IScheduledEventConfiguration EveryFiveSeconds()
         {
-            this._secondsInterval = 5;
-            this._isScheduledPerSecond = true;
-            this._expression = new CronExpression("* * * * *");
+            this._expression = new CronExpression("*/5 * * * * *");
             return this;
         }
 
@@ -309,7 +307,7 @@ namespace Coravel.Scheduling.Schedule.Event
         {
             this._secondsInterval = 10;
             this._isScheduledPerSecond = true;
-            this._expression = new CronExpression("* * * * *");
+            this._expression = new CronExpression("*/10 * * * * *");
             return this;
         }
 
@@ -317,7 +315,7 @@ namespace Coravel.Scheduling.Schedule.Event
         {
             this._secondsInterval = 15;
             this._isScheduledPerSecond = true;
-            this._expression = new CronExpression("* * * * *");
+            this._expression = new CronExpression("*/15 * * * * *");
             return this;
         }
 
@@ -325,7 +323,7 @@ namespace Coravel.Scheduling.Schedule.Event
         {
             this._secondsInterval = 30;
             this._isScheduledPerSecond = true;
-            this._expression = new CronExpression("* * * * *");
+            this._expression = new CronExpression("*/30 * * * * *");
             return this;
         }
 
@@ -336,9 +334,7 @@ namespace Coravel.Scheduling.Schedule.Event
                 throw new ArgumentException("When calling 'EverySeconds(int seconds)', 'seconds' must be between 0 and 60");
             }
 
-            this._secondsInterval = seconds;
-            this._isScheduledPerSecond = true;
-            this._expression = new CronExpression("* * * * *");
+            this._expression = new CronExpression($"*/{seconds} * * * * *");
             return this;
         }
 
